@@ -20,13 +20,11 @@ export default class VideoAudioStream {
     get streamReceived(): LiteEventListener<UserMessage> { return this._streamReceived }
     get connectionClosed(): LiteEventListener<UserMessage> { return this._connectionClosed }
 
-    constructor(peer: Peer, roomId: string, userId: string) {
+    constructor(peer: Peer, roomId: string, connectionId: string) {
         this.peer = peer;
         this.roomId = roomId;
-        this.user = new User(userId);
+        this.user = new User(connectionId);
     }
-
-
 
     start() : void {
         navigator.mediaDevices
@@ -60,7 +58,7 @@ export default class VideoAudioStream {
     }
 
     private listenToNewJoiningUsers(stream: MediaStream): void {
-        const roomsController = new RoomsController(this.roomId, this.user.completeId);
+        const roomsController = new RoomsController(this.roomId, this.user.connectionId);
         roomsController.userConnected.on(joinedUser => {
             if(!joinedUser) return;
             this.partyUsers.push(joinedUser);

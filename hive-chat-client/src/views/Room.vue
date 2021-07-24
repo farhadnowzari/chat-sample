@@ -40,7 +40,7 @@ export default class Room extends Vue {
     readonly user!: string;
 
     //when it is null, it means the peerjs connection is not made yet
-    userId: string | null = null;
+    connectionId: string | null = null;
     peer!: Peer;
     roomsController!: RoomsController;
     myStream!: UserMessage;
@@ -52,8 +52,8 @@ export default class Room extends Vue {
             console.log(err);
         })
         this.peer.on('open', (id) => {
-            this.userId = `${this.user}|${id}`;
-            const vas = new VideoAudioStream(this.peer, this.roomId, this.userId);
+            this.connectionId = `${this.user}|${id}`;
+            const vas = new VideoAudioStream(this.peer, this.roomId, this.connectionId);
             vas.streamReady.on(myStream => {
                 this.myStream = myStream as UserMessage;
             });

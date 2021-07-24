@@ -1,12 +1,12 @@
 export default class User {
 
-    constructor(userId: string) {
-        const userIdParts = userId.split('|');
+    constructor(connectionId: string) {
+        const userIdParts = connectionId.split('|');
         this.name = userIdParts[0];
         this.id = userIdParts[1];
-        this.completeId = userId;
+        this.connectionId = connectionId;
     }
-    completeId: string;
+    connectionId: string;
     id!: string;
     name!: string;
 

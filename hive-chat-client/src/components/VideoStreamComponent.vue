@@ -18,6 +18,8 @@ export default class VideoStreamComponent extends Vue {
     readonly user!: UserMessage;
     @Prop(Boolean)
     readonly mute!: boolean;
+    @Prop(Boolean)
+    readonly mirror!: boolean;
 
     mounted(): void {
         this.$nextTick(() => {
