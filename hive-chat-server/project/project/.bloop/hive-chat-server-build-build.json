@@ -2,15 +2,15 @@
     "version": "1.4.0",
     "project": {
         "name": "hive-chat-server-build-build",
-        "directory": "D:\\Projects\\hive-chat-server\\project\\project",
-        "workspaceDir": "D:\\Projects\\hive-chat-server\\project\\project",
+        "directory": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project",
+        "workspaceDir": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project",
         "sources": [
-            "D:\\Projects\\hive-chat-server\\project\\project\\src\\main\\scala",
-            "D:\\Projects\\hive-chat-server\\project\\project\\src\\main\\scala-2.12",
-            "D:\\Projects\\hive-chat-server\\project\\project\\src\\main\\scala-2",
-            "D:\\Projects\\hive-chat-server\\project\\project\\src\\main\\java",
-            "D:\\Projects\\hive-chat-server\\project\\project\\src\\main\\scala-sbt-1.0",
-            "D:\\Projects\\hive-chat-server\\project\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\src\\main\\scala",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\src\\main\\scala-2.12",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\src\\main\\scala-2",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\src\\main\\java",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\src\\main\\scala-sbt-1.0",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
         ],
         "dependencies": [
             
@@ -105,11 +105,11 @@
             "C:\\Users\\feri_\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\com\\squareup\\okio\\okio\\1.17.2\\okio-1.17.2.jar",
             "C:\\Users\\feri_\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\com\\typesafe\\config\\1.3.3\\config-1.3.3.jar"
         ],
-        "out": "D:\\Projects\\hive-chat-server\\project\\project\\.bloop\\hive-chat-server-build-build",
-        "classesDir": "D:\\Projects\\hive-chat-server\\project\\project\\.bloop\\hive-chat-server-build-build\\scala-2.12\\sbt-1.0\\classes",
+        "out": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\.bloop\\hive-chat-server-build-build",
+        "classesDir": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\.bloop\\hive-chat-server-build-build\\scala-2.12\\sbt-1.0\\classes",
         "resources": [
-            "D:\\Projects\\hive-chat-server\\project\\project\\src\\main\\resources",
-            "D:\\Projects\\hive-chat-server\\project\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\src\\main\\resources",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
         ],
         "scala": {
             "organization": "org.scala-lang",
@@ -126,7 +126,7 @@
                 "C:\\Users\\feri_\\.sbt\\boot\\scala-2.12.13\\lib\\scala-reflect.jar",
                 "C:\\Users\\feri_\\.sbt\\boot\\scala-2.12.13\\lib\\scala-xml_2.12-1.0.6.jar"
             ],
-            "analysis": "D:\\Projects\\hive-chat-server\\project\\project\\target\\streams\\compile\\bloopAnalysisOut\\_global\\streams\\inc_compile_2.12.zip",
+            "analysis": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\project\\target\\streams\\compile\\bloopAnalysisOut\\_global\\streams\\inc_compile_2.12.zip",
             "setup": {
                 "order": "mixed",
                 "addLibraryToBootClasspath": true,
@@ -201,7 +201,7 @@
             "config": {
                 "home": "C:\\Program Files\\Java\\jdk1.8.0_301\\jre",
                 "options": [
-                    "-Duser.dir=D:\\Projects\\hive-chat-server\\project\\project"
+                    "-Duser.dir=D:\\Projects\\chat-sample\\hive-chat-server\\project\\project"
                 ]
             },
             "mainClass": [
