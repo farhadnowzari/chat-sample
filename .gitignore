@@ -1,2 +1,5 @@
 .vscode
 .metals
+hive-chat-server/prod.conf
+hive-chat-server/project/.bloop/hive-chat-server-build.json
+hive-chat-client/package-lock.json

@@ -2,15 +2,15 @@
     "version": "1.4.0",
     "project": {
         "name": "hive-chat-server-build",
-        "directory": "D:\\Projects\\hive-chat-server\\project",
-        "workspaceDir": "D:\\Projects\\hive-chat-server\\project",
+        "directory": "D:\\Projects\\chat-sample\\hive-chat-server\\project",
+        "workspaceDir": "D:\\Projects\\chat-sample\\hive-chat-server\\project",
         "sources": [
-            "D:\\Projects\\hive-chat-server\\project\\src\\main\\scala",
-            "D:\\Projects\\hive-chat-server\\project\\src\\main\\scala-2.12",
-            "D:\\Projects\\hive-chat-server\\project\\src\\main\\scala-2",
-            "D:\\Projects\\hive-chat-server\\project\\src\\main\\java",
-            "D:\\Projects\\hive-chat-server\\project\\src\\main\\scala-sbt-1.0",
-            "D:\\Projects\\hive-chat-server\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\src\\main\\scala",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\src\\main\\scala-2.12",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\src\\main\\scala-2",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\src\\main\\java",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\src\\main\\scala-sbt-1.0",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
         ],
         "dependencies": [
             
@@ -181,11 +181,11 @@
             "C:\\Users\\feri_\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\org\\eclipse\\jetty\\jetty-io\\9.4.5.v20170502\\jetty-io-9.4.5.v20170502.jar",
             "C:\\Users\\feri_\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\org\\eclipse\\jetty\\jetty-util\\9.4.5.v20170502\\jetty-util-9.4.5.v20170502.jar"
         ],
-        "out": "D:\\Projects\\hive-chat-server\\project\\.bloop\\hive-chat-server-build",
-        "classesDir": "D:\\Projects\\hive-chat-server\\project\\.bloop\\hive-chat-server-build\\scala-2.12\\sbt-1.0\\classes",
+        "out": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\.bloop\\hive-chat-server-build",
+        "classesDir": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\.bloop\\hive-chat-server-build\\scala-2.12\\sbt-1.0\\classes",
         "resources": [
-            "D:\\Projects\\hive-chat-server\\project\\src\\main\\resources",
-            "D:\\Projects\\hive-chat-server\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\src\\main\\resources",
+            "D:\\Projects\\chat-sample\\hive-chat-server\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
         ],
         "scala": {
             "organization": "org.scala-lang",
@@ -201,7 +201,7 @@
                 "C:\\Users\\feri_\\.sbt\\boot\\scala-2.12.13\\lib\\scala-reflect.jar",
                 "C:\\Users\\feri_\\.sbt\\boot\\scala-2.12.13\\lib\\scala-xml_2.12-1.0.6.jar"
             ],
-            "analysis": "D:\\Projects\\hive-chat-server\\project\\target\\streams\\compile\\bloopAnalysisOut\\_global\\streams\\inc_compile_2.12.zip",
+            "analysis": "D:\\Projects\\chat-sample\\hive-chat-server\\project\\target\\streams\\compile\\bloopAnalysisOut\\_global\\streams\\inc_compile_2.12.zip",
             "setup": {
                 "order": "mixed",
                 "addLibraryToBootClasspath": true,
@@ -276,7 +276,7 @@
             "config": {
                 "home": "C:\\Program Files\\Java\\jdk1.8.0_301\\jre",
                 "options": [
-                    "-Duser.dir=D:\\Projects\\hive-chat-server\\project"
+                    "-Duser.dir=D:\\Projects\\chat-sample\\hive-chat-server\\project"
                 ]
             },
             "mainClass": [
