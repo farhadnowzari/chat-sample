@@ -61,6 +61,7 @@ export default class ChatPanel extends Vue {
          this.vas.chatMessageReceived.on(chatMessage => {
             if(!chatMessage) return;
             this.messages.push(chatMessage);
+            this.$refs.messagedHolder.scrollTop = this.$refs.messagedHolder.scrollHeight;
         });
     }
     @Prop(Object)
