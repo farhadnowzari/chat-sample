@@ -27,7 +27,7 @@
         <v-container fluid class='w-100 h-100 d-flex flex-column' v-else>
             <div class="d-flex flex-column align-center justify-center mx-auto my-auto">
                 <img :src="require('@/assets/alone.svg')" class='mx-auto my-auto' height="200">
-                <span class="white--text mt-6 mw-narrower text-center">You are the only one in the room, please wait for other to join :)</span>
+                <span class="white--text mt-6 mw-narrower text-center">You are the only one in the room, please wait for others to join :)</span>
                 <v-btn 
                     @click="copyTheRoomLinkToClipboard()" 
                     class="mt-2"
