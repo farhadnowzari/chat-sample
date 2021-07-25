@@ -1,10 +1,16 @@
 <template>
     <div :class="{fullscreen: fullscreen, 'position-relative': !fullscreen}">
         <video ref="videoRef"></video>
-        <v-chip class="position-top-left d-flex align-center" v-if="showName">
-            <v-icon class="mr-1" color="primary">mdi-account</v-icon>
-            {{ user.user.name }}
-        </v-chip>
+        <div class="position-top-left w-100 d-flex align-end" v-if="showName">
+            <v-chip class="d-flex align-center ml-auto mr-2" small v-if="room">
+                <v-icon class="mr-1" color="primary">mdi-connection</v-icon>
+                {{ room }}
+            </v-chip>
+            <v-chip class="d-flex align-center" small>
+                <v-icon class="mr-1" color="primary">mdi-account</v-icon>
+                {{ user.user.name }}
+            </v-chip>
+        </div>
     </div>
 </template>
 
@@ -28,6 +34,8 @@ export default class VideoStreamComponent extends Vue {
     readonly fullscreen!: boolean;
     @Prop(Boolean)
     readonly showName!: boolean;
+    @Prop(String)
+    readonly room!: string;
 
     mounted(): void {
         this.$nextTick(() => {
@@ -54,7 +62,7 @@ video {
     height: 100%;
 }
 .position-top-left {
-    position: absolute;
+position: absolute;
     top: 2%;
     right: 2%;
 }

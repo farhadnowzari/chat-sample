@@ -9,15 +9,26 @@
                 <v-progress-linear class='mt-5' color="primary" indeterminate></v-progress-linear>
             </v-container>
         </v-overlay>
-        <v-container>
+        <v-container v-if="partyUsers.length > 0">
             <v-row align="center" class='vh-100'>
                 <v-col
                     :key="index"
                     cols="12"  xs="6" lg="5" xl="4"
                     v-for="(partyUser, index) in partyUsers">
-                    <video-stream-component class='align-self-center' show-name :user="partyUser" :fullscreen="partyUsers.length === 1"></video-stream-component>
+                    <video-stream-component 
+                        :fullscreen="partyUsers.length === 1"
+                        :room="roomId"
+                        :user="partyUser" 
+                        class='align-self-center' 
+                        show-name ></video-stream-component>
                 </v-col>
             </v-row>
+        </v-container>
+        <v-container fluid class='w-100 h-100 d-flex flex-column' v-else>
+            <div class="d-flex flex-column align-center justify-center mx-auto my-auto">
+                <img :src="require('@/assets/alone.svg')" class='mx-auto my-auto' height="200">
+                <span class="white--text mt-6 mw-narrower text-center">You are the only one in the room, please wait for other to join :)</span>
+            </div>
         </v-container>
         <video-stream-component 
             :user="hostUser"
@@ -112,6 +123,6 @@ export default class Room extends Vue {
 }
 .scrollable {
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 </style>
