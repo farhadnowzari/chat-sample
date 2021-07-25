@@ -15,8 +15,9 @@ export default class App extends Vue {
 </script>
 
 <style>
-html {scrollbar-width: none;}
-body {
+html, body {
+  margin: 0;
+  height: 100%;
   overflow: hidden;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
