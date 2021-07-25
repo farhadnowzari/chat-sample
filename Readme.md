@@ -11,3 +11,6 @@ This project is hosted on Microsoft Azure with a free plan account.
 The backend is deployed using the DocketInstances.
 
 The frontend is deployed as vuejs static website.
+
+
+**NOTE:** This project is not tested on iOS
