@@ -11,5 +11,7 @@ RUN unzip hive-chat-server-1.0-SNAPSHOT.zip && \
 WORKDIR hive-chat-server-1.0-SNAPSHOT
 
 EXPOSE 9000
+EXPOSE 80
+EXPOSE 443
 
 CMD ["bin/hive-chat-server", "-Dconfig.file=../prod.conf"]
