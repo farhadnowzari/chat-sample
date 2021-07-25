@@ -17,7 +17,7 @@
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </v-toolbar>
-            <div class="mt-auto" style='padding-bottom: 60px'>
+            <div class="mt-auto" style='padding-bottom: 60px' ref='messagesHolder'>
                 <div :key="index" class="pa-2" v-for="(message, index) in messages">
                     <div>
                         <p class='ma-0 pa-0'>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <v-footer fixed class="mt-auto w-100 pa-0" bottom>
+            <v-footer tile fixed class="mt-auto w-100 pa-0" bottom>
                 <v-text-field 
                     @keypress.enter="sendMessage()"
                     filled
@@ -51,6 +51,10 @@ import VideoAudioStream from '@/helpers/VideoAudioStream';
 
 @Component
 export default class ChatPanel extends Vue {
+    $refs!: {
+        messagedHolder: HTMLElement
+    }
+
     @Watch('vas')
     onVasChanged(newValue : VideoAudioStream, oldValue : VideoAudioStream | null): void {
         if(oldValue) return;
@@ -71,6 +75,7 @@ export default class ChatPanel extends Vue {
         var result = this.vas.sendTextMessage(this.chatMessage);
         const myMessage = new ChatMessage(this.vas.user, this.chatMessage).markAsSelf();
         this.messages.push(myMessage);
+        this.$refs.messagedHolder.scrollTop = this.$refs.messagedHolder.scrollHeight;
         if(result) this.chatMessage = null;
     }
 
