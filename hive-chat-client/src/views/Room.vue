@@ -1,6 +1,6 @@
 <template>
     <div class="scrollable" style="background-color:#000; height: 100vh;">
-        <v-overlay v-if="!connectionId" color="white" opacity="1">
+        <v-overlay v-if="!connectionId" color="white" opacity="1" z-index="99">
             <v-container class="mx-auto mw-narrower d-flex flex-column align-center justify-center" fluid>
                 <img :src="require('@/assets/happy_bird.svg')" class='w-100' />
                 <div class="text-h6 black--text mt-12 text-center">
