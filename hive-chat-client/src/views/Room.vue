@@ -115,8 +115,8 @@ export default class Room extends Vue {
 <style lang="scss" scoped>
 .hover-avatar {
     position: fixed;
-    width: 150px;
-    height:100px;
+    width: 100px;
+    height:150px;
     top: 2%;
     left: 4%;
     z-index: 10;
