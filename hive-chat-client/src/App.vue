@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background-color: #f4f4f4">
+  <v-app :style="$vuetify.breakpoint.lgAndUp ? 'background-color: #f4f4f4' : '#fff'">
     <v-main>
       <router-view/>
     </v-main>

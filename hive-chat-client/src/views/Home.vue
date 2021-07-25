@@ -1,5 +1,8 @@
 <template>
-  <v-card class="mw-narrow my-12 mx-auto">
+  <v-card 
+    :flat="$vuetify.breakpoint.mdAndDown"
+    :tile="$vuetify.breakpoint.mdAndDown"
+    class="mw-narrow my-12 mx-auto">
     <div class="pt-12 px-12">
       <v-img :src="require('@/assets/welcome_cats.svg')"></v-img>
     </div>
@@ -83,5 +86,8 @@ export default class Home extends Vue {
 }
 .h-100 {
   height: 100% !important;
+}
+.vh-100 {
+  height: 100vh !important;
 }
 </style>

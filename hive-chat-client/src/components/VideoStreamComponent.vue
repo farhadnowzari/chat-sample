@@ -42,6 +42,7 @@ export default class VideoStreamComponent extends Vue {
 <style scoped>
 video {
     width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 .fullscreen {
@@ -55,7 +56,7 @@ video {
 .position-top-left {
     position: absolute;
     top: 2%;
-    left: 2%;
+    right: 2%;
 }
 .position-relative {
     position: relative;
