@@ -12,6 +12,8 @@ export default class VideoAudioStream {
     user: User;
     partyUsers: UserMessage[] = [];
 
+    private roomsController: RoomsController | null = null;
+
     private readonly _streamReady = new LiteEventListener<UserMessage>();
     private readonly _streamReceived = new LiteEventListener<UserMessage>();
     private readonly _connectionClosed = new LiteEventListener<UserMessage>();
@@ -58,8 +60,8 @@ export default class VideoAudioStream {
     }
 
     private listenToNewJoiningUsers(stream: MediaStream): void {
-        const roomsController = new RoomsController(this.roomId, this.user.connectionId);
-        roomsController.userConnected.on(joinedUser => {
+        this.roomsController = new RoomsController(this.roomId, this.user.connectionId);
+        this.roomsController.userConnected.on(joinedUser => {
             if(!joinedUser) return;
             this.partyUsers.push(joinedUser);
             const call = this.peer.call(joinedUser.userId, stream, {
@@ -77,7 +79,7 @@ export default class VideoAudioStream {
             });
             joinedUser.call = call;
         });
-        roomsController.userDisconnected.on(disconnectedUser => {
+        this.roomsController.userDisconnected.on(disconnectedUser => {
             if(!disconnectedUser) return;
             const _user = this.partyUsers.find(x => x.userId === disconnectedUser.id);
             if(_user && _user.call) {
@@ -86,5 +88,10 @@ export default class VideoAudioStream {
                 this.partyUsers = this.partyUsers.filter(x => x.userId !== disconnectedUser.id);
             }
         });
+    }
+
+    closeWebSocket() {
+        if(!this.roomsController) return;
+        this.roomsController.ws.close();
     }
 }
