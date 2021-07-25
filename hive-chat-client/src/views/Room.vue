@@ -28,6 +28,14 @@
             <div class="d-flex flex-column align-center justify-center mx-auto my-auto">
                 <img :src="require('@/assets/alone.svg')" class='mx-auto my-auto' height="200">
                 <span class="white--text mt-6 mw-narrower text-center">You are the only one in the room, please wait for other to join :)</span>
+                <v-btn 
+                    @click="copyTheRoomLinkToClipboard()" 
+                    class="mt-2"
+                    outlined 
+                    color="primary">
+                    <v-icon small>mdi-clipboard-edit-outline</v-icon>
+                    <span class='ml-1'>Room's link</span>
+                </v-btn>
             </div>
         </v-container>
         <video-stream-component 
@@ -35,12 +43,28 @@
             class="hover-avatar elevation-6"
             mute v-if="hostUser"></video-stream-component>
         <v-footer fixed style='z-index: 11; background-color: transparent;'>
-            <div class="mx-auto d-flex align-center my-12">
+            <div class="mx-auto d-flex align-center justify-center my-12 mw-narrow">
+                <v-btn @click="copyTheRoomLinkToClipboard()" 
+                    class="mr-6"
+                    color='primary'
+                    small 
+                    fab
+                    v-if="showFullChatOptions">
+                    <v-icon small>mdi-clipboard-edit-outline</v-icon>
+                </v-btn>
                 <v-btn @click="hangup" color="primary" dark fab>
                     <v-icon>mdi-phone-hangup</v-icon>
                 </v-btn>
+                <v-btn @click="openChat()" 
+                    class="ml-6"
+                    color='primary'
+                    small fab
+                    v-if="showFullChatOptions">
+                    <v-icon small>mdi-chat-processing-outline</v-icon>
+                </v-btn>
             </div>
         </v-footer>
+        <floating-message ref="floatingMessage"></floating-message>
     </div>
 </template>
 
@@ -50,13 +74,20 @@ import Peer from 'peerjs';
 import VideoAudioStream from '@/helpers/VideoAudioStream';
 import VideoStreamComponent from '@/components/VideoStreamComponent.vue';
 import UserMessage from '@/models/UserMessage';
+import ClipboardUtils from '@/utils/ClipboardUtils';
+import FloatingMessage from '@/components/FloatingMessage.vue';
 
 @Component({
     components: {
-        VideoStreamComponent
+        VideoStreamComponent,
+        FloatingMessage
     }
 })
 export default class Room extends Vue {
+    $refs!: {
+        floatingMessage: FloatingMessage
+    }
+
     @Prop(String)
     readonly roomId!: string;
     @Prop(String)
@@ -69,7 +100,17 @@ export default class Room extends Vue {
     partyUsers: UserMessage[] = [];
     vas: VideoAudioStream | null = null;
 
-    hangup() {
+    get roomLink(): string {
+        const href = this.$router.resolve({ name: 'home' }).href;
+        const origin = window.location.origin;
+        return `${origin}/${href}${this.roomId}`;
+    }
+
+    get showFullChatOptions(): boolean {
+        return this.partyUsers.length > 0;
+    }
+
+    hangup(): void {
         if(this.vas)
         {
             //Try to release my camera on hangup
@@ -82,6 +123,18 @@ export default class Room extends Vue {
             this.vas?.closeWebSocket();
             this.$router.push({ name: 'home' });
         }
+    }
+
+    copyTheRoomLinkToClipboard(): void {
+        ClipboardUtils
+            .saveToClipboard(this.roomLink)
+            .then(() => {
+                this.$refs.floatingMessage.show(`${this.roomLink} - Copied!`);
+            });
+    }
+
+    openChat(): void {
+        console.log('should open a chat!!!');
     }
 
     mounted(): void {
@@ -115,10 +168,10 @@ export default class Room extends Vue {
 <style lang="scss" scoped>
 .hover-avatar {
     position: fixed;
-    width: 100px;
+    width: 120px;
     height:150px;
     top: 2%;
-    left: 4%;
+    left: 1%;
     z-index: 10;
 }
 .scrollable {

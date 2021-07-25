@@ -35,7 +35,7 @@
                   v-model="user"></v-text-field>
               </validation-provider>
             </div>
-            <v-btn :disabled="invalid" type="submit" class="mt-6" block color="primary" x-large>Join!</v-btn>
+            <v-btn :disabled="invalid" type="submit" class="my-6" block color="primary" x-large>Join!</v-btn>
           </div>
         </form>
       </validation-observer>
@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 import { required, regex } from 'vee-validate/dist/rules';
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
 
@@ -65,11 +65,21 @@ extend('regex', {
   }
 })
 export default class Home extends Vue {
+  @Prop(String)
+  readonly roomParam!: string;
+
+
   room: string | null = null;
   user: string | null = null;
 
   joinRoom(): void {
     this.$router.push({ name: 'room', params: { roomId: this.room as string, user: this.user as string } });
+  }
+
+  mounted(): void {
+    if(this.roomParam) {
+      this.room = this.roomParam;
+    }
   }
 }
 </script>
