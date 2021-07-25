@@ -3,6 +3,7 @@ import User from "@/models/User";
 import UserMessage from "@/models/UserMessage";
 import Peer from "peerjs";
 import LiteEventListener from "./LiteEventListener";
+import ChatMessage from '@/models/ChatMessage';
 
 export default class VideoAudioStream {
 
@@ -17,10 +18,12 @@ export default class VideoAudioStream {
     private readonly _streamReady = new LiteEventListener<UserMessage>();
     private readonly _streamReceived = new LiteEventListener<UserMessage>();
     private readonly _connectionClosed = new LiteEventListener<UserMessage>();
+    private readonly _chatMessageReceived = new LiteEventListener<ChatMessage>();
 
     get streamReady(): LiteEventListener<UserMessage> { return this._streamReady }
     get streamReceived(): LiteEventListener<UserMessage> { return this._streamReceived }
     get connectionClosed(): LiteEventListener<UserMessage> { return this._connectionClosed }
+    get chatMessageReceived(): LiteEventListener<ChatMessage> { return this._chatMessageReceived }
 
     constructor(peer: Peer, roomId: string, connectionId: string) {
         this.peer = peer;
@@ -88,9 +91,20 @@ export default class VideoAudioStream {
                 this.partyUsers = this.partyUsers.filter(x => x.userId !== disconnectedUser.id);
             }
         });
+        this.roomsController.textMessageReceived.on(chatMessage => {
+            this.chatMessageReceived.trigger(chatMessage);
+        })
     }
 
-    closeWebSocket() {
+    sendTextMessage(message: string): boolean {
+        if(this.roomsController &&  this.roomsController.ws.OPEN === 1) {
+            this.roomsController.ws.send(message);
+            return true;
+        }
+        return false;
+    }
+
+    closeWebSocket(): void {
         if(!this.roomsController) return;
         this.roomsController.ws.close();
     }

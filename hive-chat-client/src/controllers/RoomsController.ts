@@ -1,4 +1,5 @@
 import LiteEventListener from "@/helpers/LiteEventListener";
+import ChatMessege from "@/models/ChatMessage";
 import User from "@/models/User";
 import UserMessage from "@/models/UserMessage";
 
@@ -11,9 +12,11 @@ export default class RoomsController {
 
     private _userConnected: LiteEventListener<UserMessage>;
     private _userDisconnected: LiteEventListener<User>;
+    private _textMessageReceived: LiteEventListener<ChatMessege>;
 
     get userConnected(): LiteEventListener<UserMessage> { return this._userConnected; }
     get userDisconnected(): LiteEventListener<User> { return this._userDisconnected; }
+    get textMessageReceived(): LiteEventListener<ChatMessege> { return this._textMessageReceived; }
 
     constructor(roomId: string, userId: string) {
         this.roomId = roomId;
@@ -21,6 +24,7 @@ export default class RoomsController {
         
         this._userConnected = new LiteEventListener<UserMessage>();
         this._userDisconnected = new LiteEventListener<User>();
+        this._textMessageReceived = new LiteEventListener<ChatMessege>();
 
         this.ws = new WebSocket(`${this.WS_SERVER_URL}/${roomId}/${encodeURIComponent(userId)}`);
         this.ws.onmessage = (event) => {
@@ -37,6 +41,10 @@ export default class RoomsController {
                 this._userDisconnected.trigger(disconnectedUser);
                 return;
             }
+            //If none of the above if the case, it is a chat message
+            const user = new User(dataParts[0]);
+            const message = dataParts[1];
+            this.textMessageReceived.trigger(new ChatMessege(user, message));
         };
     }
 }

@@ -65,6 +65,7 @@
             </div>
         </v-footer>
         <floating-message ref="floatingMessage"></floating-message>
+        <chat-panel :vas="vas" ref="chatPanel"></chat-panel>
     </div>
 </template>
 
@@ -76,16 +77,19 @@ import VideoStreamComponent from '@/components/VideoStreamComponent.vue';
 import UserMessage from '@/models/UserMessage';
 import ClipboardUtils from '@/utils/ClipboardUtils';
 import FloatingMessage from '@/components/FloatingMessage.vue';
+import ChatPanel from '@/components/ChatPanel.vue';
 
 @Component({
     components: {
+        ChatPanel,
+        FloatingMessage,
         VideoStreamComponent,
-        FloatingMessage
     }
 })
 export default class Room extends Vue {
     $refs!: {
-        floatingMessage: FloatingMessage
+        floatingMessage: FloatingMessage,
+        chatPanel: ChatPanel
     }
 
     @Prop(String)
@@ -134,7 +138,7 @@ export default class Room extends Vue {
     }
 
     openChat(): void {
-        console.log('should open a chat!!!');
+        this.$refs.chatPanel.show();
     }
 
     mounted(): void {
