@@ -5,7 +5,7 @@
         overlay-opacity=".8" 
         right 
         temporary
-        style="z-index: 100; max-width: 400px; width: 100%;"
+        style="z-index: 100; max-width: 400px; width: 100%; height: 100% !important"
         v-model="toggler">
         <div class="d-flex align-start justify-start flex-column w-100 h-100">
             <v-toolbar class='w-100' elevation="1" tile absolute>
