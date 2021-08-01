@@ -17,19 +17,26 @@
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </v-toolbar>
-            <div class="mt-auto" style='padding-bottom: 60px' ref='messagesHolder'>
-                <div :key="index" class="pa-2" v-for="(message, index) in messages">
-                    <div>
-                        <p class='ma-0 pa-0'>
-                            <span>
-                                <v-icon :color="message.self ? 'grey' : 'primary'">mdi-account</v-icon>
-                                <strong v-if="!message.self">{{ message.user.name }}:</strong>
-                                <strong v-else>You:</strong>
-                            </span>
-                            {{message.message}}
-                        </p>
+            <div
+                :class="{ 'd-flex': messages.length > 0, 'd-none': messages.length === 0 }" 
+                class="h-100 w-100 scrollable flex-column" style="margin-top: 64px; margin-bottom: 56px;" ref='messagesHolder'>
+                <div class="mt-auto" v-if="messages.length > 0">
+                    <div :key="index" class="pa-2" v-for="(message, index) in messages">
+                        <div>
+                            <p class='ma-0 pa-0'>
+                                <span>
+                                    <v-icon :color="message.self ? 'grey' : 'primary'">mdi-account</v-icon>
+                                    <strong v-if="!message.self">{{ message.user.name }}:</strong>
+                                    <strong v-else>You:</strong>
+                                </span>
+                                {{message.message}}
+                            </p>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex align-center justify-center w-100 h-100" v-if="messages.length === 0">
+                <img :src="require('@/assets/chatting.svg')" height="200" />
             </div>
             <v-footer tile fixed class="mt-auto w-100 pa-0" bottom>
                 <v-text-field 
@@ -52,7 +59,7 @@ import VideoAudioStream from '@/helpers/VideoAudioStream';
 @Component
 export default class ChatPanel extends Vue {
     $refs!: {
-        messagedHolder: HTMLElement
+        messagesHolder: HTMLElement
     }
 
     @Watch('vas')
@@ -61,7 +68,9 @@ export default class ChatPanel extends Vue {
          this.vas.chatMessageReceived.on(chatMessage => {
             if(!chatMessage) return;
             this.messages.push(chatMessage);
-            this.$refs.messagedHolder.scrollTop = this.$refs.messagedHolder.scrollHeight;
+            this.$nextTick(() => {
+                this.$refs.messagesHolder.scrollTop = this.$refs.messagesHolder.scrollHeight;
+            });
         });
     }
     @Prop(Object)
@@ -76,8 +85,10 @@ export default class ChatPanel extends Vue {
         var result = this.vas.sendTextMessage(this.chatMessage);
         const myMessage = new ChatMessage(this.vas.user, this.chatMessage).markAsSelf();
         this.messages.push(myMessage);
-        this.$refs.messagedHolder.scrollTop = this.$refs.messagedHolder.scrollHeight;
-        if(result) this.chatMessage = null;
+        this.$nextTick(() => {
+            this.$refs.messagesHolder.scrollTop = this.$refs.messagesHolder.scrollHeight;
+        });
+        if (result) this.chatMessage = null;
     }
 
     show(): void {
@@ -85,3 +96,9 @@ export default class ChatPanel extends Vue {
     }
 }
 </script>
+<style lang="scss" scoped>
+.scrollable {
+    overflow: hidden;
+    overflow-y: auto;
+}
+</style>
